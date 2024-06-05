@@ -3,3 +3,23 @@ GET http://localhost:3000/users
 
 ###
 GET  http://localhost:3000/users/2
+
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "Kevin Comba",
+    "email": "kevin@gmail.com"
+}
+
+###
+
+PUT http://localhost:8000/api/users/3
+Content-Type: application/json
+
+{
+    "id": 3,
+    "name": "Kevin Comba",
+    "email": "KevinComba@gmail.com"
+}

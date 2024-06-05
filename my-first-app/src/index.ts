@@ -33,4 +33,6 @@ serve({
 // serve({
 //   fetch: app.fetch,
 //   port:Number(process.env.PORT)
+// }) // if you want to use env variable for port you define it here.
+// 
 // })

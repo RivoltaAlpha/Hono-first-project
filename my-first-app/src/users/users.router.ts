@@ -16,9 +16,9 @@ userRouter.get("/users", (c) => {
 
 //get one user
 userRouter.get("/users/:id", (c) => {
-  const id = c.req.param("id");
+  const id = Number(c.req.param("id"));
   console.log(id);
-  const user = users.find((user) => user.id === parseInt(id, 10));
+  const user = users.find((user) => user.id === id);
   if (!user) {
     return c.json({ error: "User not found" }, 404);
   }
@@ -35,4 +35,20 @@ userRouter.post("/new-users", async (c: Context) => {
     return c.json(newUser, 201);
 })
 
+//update a user
 
+userRouter.put("/users/:id", async (c: Context) => {
+  const id = Number(c.req.param("id"));
+  const user = await c.req.json();
+  const index = users.findIndex((user) => user.id === id);
+  if (index === -1) {
+      return c.text("User not found", 404);
+  }
+  users[index] = user;
+  // const foundUser = users.find((user) => user.id === id);
+  // if (!foundUser) {
+  //     return c.text("User not found", 404);
+  // }
+  // Object.assign(foundUser, user);  //update the user
+  return c.json(user, 200);
+})
